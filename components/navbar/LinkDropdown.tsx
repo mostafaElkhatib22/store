@@ -3,31 +3,56 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LuAlignLeft } from "react-icons/lu";
 import { Button } from "../ui/button";
 import { links } from "@/utils/links";
-import { link } from "fs";
 import Link from "next/link";
+import UserIcone from "@/components/navbar/UserIcone";
+import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 function LinkDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" className="flex gap-4 max-w-[100px]">
           <LuAlignLeft className="w-6 h-6" />
+          <UserIcone />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-40 mr-3 py-2" align="start" sideOffset={10}>
-        {links.map((link) => {
-          return (
-            <DropdownMenuItem key={link.href} className="hover:bg-slate-500 hover:text-white">
-              <Link href={link.href} className="capitalize w-full">
-                {link.label}
-              </Link>
-            </DropdownMenuItem>
-          );
-        })}
+      <DropdownMenuContent
+        className="w-40 mr-3 py-2"
+        align="start"
+        sideOffset={10}
+      >
+        <SignedOut>
+          <DropdownMenuItem>
+            <SignInButton mode="modal">
+              <button className="w-full text-left">Login</button>
+            </SignInButton>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <SignUpButton mode="modal">
+              <button className="w-full text-left">Regisert</button>
+            </SignUpButton>
+          </DropdownMenuItem>
+        </SignedOut>
+        <SignedIn>
+          {links.map((link) => {
+            return (
+              <DropdownMenuItem
+                key={link.href}
+                className="hover:bg-slate-500 hover:text-white"
+              >
+                <Link href={link.href} className="capitalize w-full">
+                  {link.label}
+                </Link>
+              </DropdownMenuItem>
+            );
+          })}
+        </SignedIn>
       </DropdownMenuContent>
     </DropdownMenu>
   );
