@@ -11,7 +11,9 @@ import { Button } from "../ui/button";
 import { links } from "@/utils/links";
 import Link from "next/link";
 import UserIcone from "@/components/navbar/UserIcone";
-import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import SignOutLink from "./SignOutLink";
+
 function LinkDropdown() {
   return (
     <DropdownMenu>
@@ -28,16 +30,18 @@ function LinkDropdown() {
       >
         <SignedOut>
           <DropdownMenuItem>
-            <SignInButton mode="modal">
+            <SignUpButton mode="modal">
               <button className="w-full text-left">Login</button>
-            </SignInButton>
+            </SignUpButton>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <SignUpButton mode="modal">
-              <button className="w-full text-left">Regisert</button>
-            </SignUpButton>
+            <SignInButton mode="modal">
+              <button className="w-full text-left">Register</button>
+            </SignInButton>
           </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <SignOutLink />
         </SignedOut>
         <SignedIn>
           {links.map((link) => {
@@ -52,7 +56,12 @@ function LinkDropdown() {
               </DropdownMenuItem>
             );
           })}
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <SignOutLink />
+          </DropdownMenuItem>
         </SignedIn>
+        <DropdownMenuSeparator />
       </DropdownMenuContent>
     </DropdownMenu>
   );
