@@ -41,7 +41,6 @@ function LinkDropdown() {
             </SignInButton>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <SignOutLink />
         </SignedOut>
         <SignedIn>
           {links.map((link) => {
