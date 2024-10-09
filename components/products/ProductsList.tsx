@@ -32,11 +32,14 @@ function ProductsList({ products }: { products: Product[] }) {
                     <h4 className="text-muted-foreground">{company}</h4>
                   </div>
                   <p className="text-muted-foreground text-lg md:ml-auto">
-                    {dollarsAmount}  
+                    {dollarsAmount}
                   </p>
-                  <div className="absolute bottom-8 right-8 z-5">
-                    <FavoriteToggleButton productId={productId} />
-                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+            <div className="absolute bottom-8 right-8 z-5">
+              <FavoriteToggleButton productId={productId} />
+            </div>
                 </CardContent>
               </Card>
             </Link>
