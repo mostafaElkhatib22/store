@@ -3,6 +3,7 @@ import React from "react";
 import { LuUser2 } from "react-icons/lu";
 async function UserIcone() {
   const user = await currentUser();
+
   const profileImage = user?.imageUrl;
   if (profileImage) {
     return (

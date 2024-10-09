@@ -1,18 +1,31 @@
 "use server";
 import { redirect } from "next/navigation";
-import { db } from "./db";
 import { currentUser } from "@clerk/nextjs/server";
-import { productSchema, validateWithZodSchema } from "./schemas";
+import { imageSchema, productSchema, validateWithZodSchema } from "./schemas";
+import db from "./db";
+import { deleteImage, uploadImage } from "./supabase";
+import { revalidatePath } from "next/cache";
+// get user
 const getAuthUser = async () => {
   const user = await currentUser();
   if (!user) redirect("/");
   return user;
 };
+// get admin user
+const getAdminUser = async () => {
+  const user = await getAuthUser();
+  if (user.id !== process.env.ADMIN_USER_ID) {
+    redirect("/");
+  }
+  return user;
+};
+// get Errror
 const renderError = (error: unknown): { message: string } => {
   return {
     message: error instanceof Error ? error.message : "an error occurred",
   };
 };
+// get Featured products
 export const fetchFeaturedProducts = async () => {
   const products = await db.product.findMany({
     where: {
@@ -35,6 +48,7 @@ export const fetchAllProducts = ({ search = "" }: { search: string }) => {
     },
   });
 };
+// get Single products
 export const fetchSingleProduct = async (productId: string) => {
   const product = await db.product.findUnique({
     where: {
@@ -158,7 +172,6 @@ export const updatedProductImageAction = async (
     });
     revalidatePath(`/admin/products/${productId}/edit`);
     return { message: "product Image updated successfuly" };
-
   } catch (error) {
     return renderError(error);
   }
@@ -176,6 +189,44 @@ export const fetchFavoriteId = async ({ productId }: { productId: string }) => {
   });
   return favorite?.id || null;
 };
-export const toggleFavoriteAction = async () => {
-  return { message: "toggle favorite action" };
-}; 
+export const toggleFavoriteAction = async (prevState: {
+  productId: string;
+  favoriteId: string | null;
+  pathName: string;
+}) => {
+  const user = await getAuthUser();
+  const { productId, favoriteId, pathName } = prevState;
+  try {
+    if (favoriteId) {
+      await db.favorite.delete({
+        where: {
+          id: favoriteId,
+        },
+      });
+    } else {
+      await db.favorite.create({
+        data: {
+          productId,
+          clerkId: user.id,
+        },
+      });
+    }
+    revalidatePath(pathName)
+    return { message: favoriteId?'removed from faves':'added to faves' };
+
+  } catch (error) {
+    return renderError(error);
+  }
+};
+export const fetchUserFavorites = async()=>{
+  const user = await getAuthUser()
+  const favorites = await db.favorite.findMany({
+    where:{
+      clerkId:user.id
+    },
+    include:{
+      product:true
+    }
+  })
+  return favorites;
+}

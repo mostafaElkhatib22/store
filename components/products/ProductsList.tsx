@@ -40,9 +40,6 @@ function ProductsList({ products }: { products: Product[] }) {
             <div className="absolute bottom-8 right-8 z-5">
               <FavoriteToggleButton productId={productId} />
             </div>
-                </CardContent>
-              </Card>
-            </Link>
           </article>
         );
       })}

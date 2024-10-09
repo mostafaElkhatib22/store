@@ -11,10 +11,12 @@ import { Button } from "../ui/button";
 import { links } from "@/utils/links";
 import Link from "next/link";
 import UserIcone from "@/components/navbar/UserIcone";
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import SignOutLink from "./SignOutLink";
-
+import {auth} from '@clerk/nextjs/server'
 function LinkDropdown() {
+  const {userId} = auth()
+  const isAdmin = userId === process.env.ADMIN_USER_ID
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -30,24 +32,27 @@ function LinkDropdown() {
       >
         <SignedOut>
           <DropdownMenuItem>
-            <SignUpButton mode="modal">
+            <SignInButton mode="modal">
               <button className="w-full text-left">Login</button>
-            </SignUpButton>
+            </SignInButton>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <SignInButton mode="modal">
+            <SignUpButton mode="modal">
               <button className="w-full text-left">Register</button>
-            </SignInButton>
+            </SignUpButton>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
         </SignedOut>
         <SignedIn>
           {links.map((link) => {
+            if (link.label==="dashboard"&& !isAdmin) {
+              return null
+            }
             return (
               <DropdownMenuItem
                 key={link.href}
-                className="hover:bg-slate-500 hover:text-white"
+                className="hover:bg-slate-500 font-semibold hover:text-white"
               >
                 <Link href={link.href} className="capitalize w-full">
                   {link.label}
