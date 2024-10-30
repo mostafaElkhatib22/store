@@ -1,20 +1,17 @@
-import { fetchFeaturedProducts } from "@/utils/actions";
-import React from "react";
-import EmptyList from "@/components/global/EmptyList";
-import SectionTitle from "../global/SectionTitle";
-import ProductsGrid from "../products/ProductsGrid";
+import { fetchFeaturedProducts } from '@/utils/actions';
+import EmptyList from '../global/EmptyList';
+import SectionTitle from '../global/SectionTitle';
+import ProductsGrid from '../products/ProductsGrid';
 
 async function FeaturedProducts() {
   const products = await fetchFeaturedProducts();
-  if (products.length === 0) {
-    return <EmptyList />;
-  }
+  if (products.length === 0) return <EmptyList />;
+
   return (
-    <section className="PT-24">
-      <SectionTitle text="featured products" />
+    <section className='pt-24'>
+      <SectionTitle text='featured products' />
       <ProductsGrid products={products} />
     </section>
   );
 }
-
 export default FeaturedProducts;

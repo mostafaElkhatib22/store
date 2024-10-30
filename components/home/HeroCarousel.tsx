@@ -1,34 +1,32 @@
-import React from "react";
+import hero1 from '@/public/images/hero1.jpg';
+import hero2 from '@/public/images/hero2.jpg';
+import hero3 from '@/public/images/hero3.jpg';
+import hero4 from '@/public/images/hero4.jpg';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
-import { Card, CardContent } from "@/components/ui/card";
-import hero from "@/public/61C-jIPw9FS._AC_SL1001_.jpg";
-import hero2 from "@/public/OIP (1).jpeg";
-import hero3 from "@/public/OIP.jpeg";
-import hero4 from "@/public/R (1).jpeg";
-import hero5 from "@/public/R.jpeg";
-import Image from "next/image";
-const carouselImages = [hero, hero2, hero3, hero4, hero5];
+} from '../ui/carousel';
+import { Card, CardContent } from '../ui/card';
+import Image from 'next/image';
+const carouselImages = [hero1, hero2, hero3, hero4];
+
 function HeroCarousel() {
   return (
-    <div className="hidden lg:block mr-7">
+    <div className='hidden lg:block'>
       <Carousel>
         <CarouselContent>
           {carouselImages.map((image, index) => {
             return (
               <CarouselItem key={index}>
                 <Card>
-                  <CardContent>
+                  <CardContent className='p-2'>
                     <Image
                       src={image}
-                      alt=""
-                      className="w-full h-[27rem] rounded-md object-cover"
-                      
+                      alt='hero'
+                      className='w-full h-[24rem] rounded-md object-cover'
                     />
                   </CardContent>
                 </Card>
@@ -42,5 +40,4 @@ function HeroCarousel() {
     </div>
   );
 }
-
 export default HeroCarousel;

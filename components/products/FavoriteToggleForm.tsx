@@ -1,22 +1,24 @@
-"use client";
-import React from "react";
-import { usePathname } from "next/navigation";
-import FormContainer from "@/components/form/FormContainer";
-import { toggleFavoriteAction } from "@/utils/actions";
-import { CardSubmitButton } from "@/components/form/Buttons";
-type FavoriteToggleButtonProps = {
+'use client';
+
+import { usePathname } from 'next/navigation';
+import FormContainer from '../form/FormContainer';
+import { toggleFavoriteAction } from '@/utils/actions';
+import { CardSubmitButton } from '../form/Buttons';
+
+type FavoriteToggleFormProps = {
   productId: string;
   favoriteId: string | null;
 };
+
 function FavoriteToggleForm({
   productId,
   favoriteId,
-}: FavoriteToggleButtonProps) {
-  const pathName = usePathname();
+}: FavoriteToggleFormProps) {
+  const pathname = usePathname();
   const toggleAction = toggleFavoriteAction.bind(null, {
     productId,
     favoriteId,
-    pathName,
+    pathname,
   });
   return (
     <FormContainer action={toggleAction}>
@@ -24,5 +26,4 @@ function FavoriteToggleForm({
     </FormContainer>
   );
 }
-
 export default FavoriteToggleForm;

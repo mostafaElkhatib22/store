@@ -1,68 +1,61 @@
-import React from "react";
 import {
   fetchAdminProductDetails,
-  updatedProductAction,
-  updatedProductImageAction,
-} from "@/utils/actions";
-import FormContainer from "@/components/form/FormContainer";
-import PriceInput from "@/components/form/PriceInput";
-import TextAreaInput from "@/components/form/textAreaInput";
-import SubmitButton from "@/components/form/Buttons";
-import Checkboxinput from "@/components/form/Checkboxinput";
-import { Input } from "@/components/ui/input";
-import FormInput from "@/components/form/FormInput";
-import ImageInputContainer from "@/components/form/ImageInputContainer";
-async function EditeProductPage({ params }: { params: { id: string } }) {
+  updateProductAction,
+  updateProductImageAction,
+} from '@/utils/actions';
+import FormContainer from '@/components/form/FormContainer';
+import FormInput from '@/components/form/FormInput';
+import PriceInput from '@/components/form/PriceInput';
+import TextAreaInput from '@/components/form/TextAreaInput';
+import { SubmitButton } from '@/components/form/Buttons';
+import CheckboxInput from '@/components/form/CheckboxInput';
+import ImageInputContainer from '@/components/form/ImageInputContainer';
+
+async function EditProductPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const product = await fetchAdminProductDetails(id);
   const { name, company, description, featured, price } = product;
   return (
     <section>
-      <h1 className="text-2xl font-semibold mb-8 capitalize">Update Product</h1>
-      <div className="border p-8 rounded">
+      <h1 className='text-2xl font-semibold mb-8 capitalize'>update product</h1>
+      <div className='border p-8 rounded'>
         <ImageInputContainer
-          action={updatedProductImageAction}
+          action={updateProductImageAction}
           name={name}
           image={product.image}
-          text="update image"
+          text='update image'
         >
-          <input type="hidden" name="id" value={id} />
-          <input type="hidden" name="url" value={product.image} />
+          <input type='hidden' name='id' value={id} />
+          <input type='hidden' name='url' value={product.image} />
         </ImageInputContainer>
-        <FormContainer action={updatedProductAction}>
-          <div className="grid gap-4 md:grid-cols-2 my-4">
-            <Input type="hidden" name="id" value={id} />
+        <FormContainer action={updateProductAction}>
+          <div className='grid gap-4 md:grid-cols-2 my-4'>
+            <input type='hidden' name='id' value={id} />
             <FormInput
-              type="text"
-              name="name"
-              label="product name"
+              type='text'
+              name='name'
+              label='product name'
               defaultValue={name}
             />
-            <FormInput
-              type="text"
-              name="company"
-              label="company"
-              defaultValue={company}
-            />
+            <FormInput type='text' name='company' defaultValue={company} />
             <PriceInput defaultValue={price} />
           </div>
           <TextAreaInput
-            name="description"
-            labelText="product description"
+            name='description'
+            labelText='product description'
             defaultValue={description}
           />
-          <div className="mt-6">
-            <Checkboxinput
-              name="featured"
+          <div className='mt-6'>
+            <CheckboxInput
+              name='featured'
+              label='featured'
               defaultChecked={featured}
-              label="featured product"
             />
           </div>
-          <SubmitButton text="update product" className="mt-8" />
+          <SubmitButton text='update product' className='mt-8' />
         </FormContainer>
       </div>
     </section>
   );
 }
-
-export default EditeProductPage;
+export default EditProductPage;

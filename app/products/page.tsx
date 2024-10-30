@@ -1,13 +1,13 @@
-import ProductsContainer from "@/components/products/ProductsContainer";
-import React from "react";
+import ProductsContainer from '@/components/products/ProductsContainer';
 
-export default function ProductsPage({
+function ProductsPage({
   searchParams,
 }: {
   searchParams: { layout?: string; search?: string };
 }) {
-  const layout = searchParams.layout || 'grid' 
-  const search = searchParams.search || ''  
-  console.log(searchParams);
-  return <ProductsContainer layout={layout} search={search}/>;
+  const layout = searchParams.layout || 'grid';
+  const search = searchParams.search || '';
+
+  return <ProductsContainer layout={layout} search={search} />;
 }
+export default ProductsPage;

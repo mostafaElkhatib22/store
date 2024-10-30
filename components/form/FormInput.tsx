@@ -1,6 +1,5 @@
-import React from "react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Label } from '../ui/label';
+import { Input } from '../ui/input';
 
 type FormInputProps = {
   name: string;
@@ -9,16 +8,17 @@ type FormInputProps = {
   defaultValue?: string;
   placeholder?: string;
 };
+
 function FormInput({
   name,
   type,
-  defaultValue,
   label,
+  defaultValue,
   placeholder,
 }: FormInputProps) {
   return (
-    <div className="mb-2">
-      <Label htmlFor={name} className="capitalize">
+    <div className='mb-2'>
+      <Label htmlFor={name} className='capitalize'>
         {label || name}
       </Label>
       <Input
@@ -32,5 +32,4 @@ function FormInput({
     </div>
   );
 }
-
 export default FormInput;

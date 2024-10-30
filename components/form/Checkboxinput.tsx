@@ -1,24 +1,28 @@
-"use client";
-import React from "react";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
+'use client';
+
+import { Checkbox } from '@/components/ui/checkbox';
+
 type CheckboxInputProps = {
   name: string;
   label: string;
   defaultChecked?: boolean;
 };
-function Checkboxinput({ name, label, defaultChecked }: CheckboxInputProps) {
+
+function CheckboxInput({
+  name,
+  label,
+  defaultChecked = false,
+}: CheckboxInputProps) {
   return (
-    <div className="flex items-center space-x-2">
-      <Label
+    <div className='flex items-center space-x-2'>
+      <Checkbox id={name} name={name} defaultChecked={defaultChecked} />
+      <label
         htmlFor={name}
-        className="text-sm leading-none capitalize peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        className='text-sm leading-none capitalize peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
       >
         {label}
-      </Label>
-      <Checkbox id={name} name={name} defaultChecked={defaultChecked} />
+      </label>
     </div>
   );
 }
-
-export default Checkboxinput;
+export default CheckboxInput;
