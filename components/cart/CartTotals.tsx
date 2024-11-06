@@ -5,7 +5,6 @@ import { createOrderAction } from '@/utils/actions';
 import FormContainer from '@/components/form/FormContainer';
 import { SubmitButton } from '@/components/form/Buttons';
 import { Cart } from '@prisma/client';
-
 function CartTotals({ cart }: { cart: Cart }) {
   const { cartTotal, shipping, tax, orderTotal } = cart;
   return (
@@ -24,7 +23,6 @@ function CartTotals({ cart }: { cart: Cart }) {
     </div>
   );
 }
-
 function CartTotalRow({
   label,
   amount,

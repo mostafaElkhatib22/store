@@ -1,7 +1,7 @@
 import { auth } from '@clerk/nextjs/server';
-import { CardSignInButton } from '../form/Buttons';
+import { CardSignInButton } from '@/components/form/Buttons';
 import { fetchFavoriteId } from '@/utils/actions';
-import FavoriteToggleForm from './FavoriteToggleForm';
+import FavoriteToggleForm from '@/components/products/FavoriteToggleForm';
 
 async function FavoriteToggleButton({ productId }: { productId: string }) {
   const { userId } = auth();

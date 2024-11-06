@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LuAlignLeft } from "react-icons/lu";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { links } from "@/utils/links";
 import Link from "next/link";
 import UserIcone from "@/components/navbar/UserIcone";

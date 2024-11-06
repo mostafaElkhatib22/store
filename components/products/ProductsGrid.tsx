@@ -1,9 +1,9 @@
 import { formatCurrency } from '@/utils/format';
 import { Product } from '@prisma/client';
 import Link from 'next/link';
-import { Card, CardContent } from '../ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
-import FavoriteToggleButton from './FavoriteToggleButton';
+import FavoriteToggleButton from '@/components/products/FavoriteToggleButton';
 function ProductsGrid({ products }: { products: Product[] }) {
   return (
     <div className='pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3'>

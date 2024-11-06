@@ -1,5 +1,5 @@
-import ProductsGrid from './ProductsGrid';
-import ProductsList from './ProductsList';
+import ProductsGrid from '@/components/products/ProductsGrid';
+import ProductsList from '@/components/products/ProductsList';
 import { LuLayoutGrid, LuList } from 'react-icons/lu';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';

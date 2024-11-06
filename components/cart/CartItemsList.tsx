@@ -1,8 +1,8 @@
 'use client';
 
 import { Card } from '@/components/ui/card';
-import { FirstColumn, SecondColumn, FourthColumn } from './CartItemColumns';
-import ThirdColumn from './ThirdColumn';
+import { FirstColumn, SecondColumn, FourthColumn } from '@/components/cart/CartItemColumns';
+import ThirdColumn from '@/components/cart/ThirdColumn';
 import { CartItemWithProduct } from '@/utils/types';
 
 function CartItemsList({ cartItems }: { cartItems: CartItemWithProduct[] }) {

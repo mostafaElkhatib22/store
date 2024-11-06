@@ -6,9 +6,9 @@ import {
 import FormContainer from '@/components/form/FormContainer';
 import FormInput from '@/components/form/FormInput';
 import PriceInput from '@/components/form/PriceInput';
-import TextAreaInput from '@/components/form/TextAreaInput';
+import TextAreaInput from '@/components/form/textAreaInput';
 import { SubmitButton } from '@/components/form/Buttons';
-import CheckboxInput from '@/components/form/CheckboxInput';
+import CheckboxInput from '@/components/form/Checkboxinput';
 import ImageInputContainer from '@/components/form/ImageInputContainer';
 
 async function EditProductPage({ params }: { params: { id: string } }) {

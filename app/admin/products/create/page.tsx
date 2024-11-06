@@ -1,10 +1,10 @@
 import { SubmitButton } from '@/components/form/Buttons';
-import CheckboxInput from '@/components/form/CheckboxInput';
+import CheckboxInput from '@/components/form/Checkboxinput';
 import FormContainer from '@/components/form/FormContainer';
 import FormInput from '@/components/form/FormInput';
 import ImageInput from '@/components/form/ImageInput';
 import PriceInput from '@/components/form/PriceInput';
-import TextAreaInput from '@/components/form/TextAreaInput';
+import TextAreaInput from '@/components/form/textAreaInput';
 import { Button } from '@/components/ui/button';
 import { createProductAction } from '@/utils/actions';
 import { faker } from '@faker-js/faker';

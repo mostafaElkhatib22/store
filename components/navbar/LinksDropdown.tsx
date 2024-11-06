@@ -7,11 +7,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { LuAlignLeft } from 'react-icons/lu';
 import Link from 'next/link';
-import { Button } from '../ui/button';
+import { Button } from '@/components/ui/button';
 import { links } from '@/utils/links';
-import UserIcon from './UserIcon';
+import UserIcon from '@/components/navbar/UserIcon';
 import { SignInButton, SignedIn, SignedOut, SignUpButton } from '@clerk/nextjs';
-import SignOutLink from './SignOutLink';
+import SignOutLink from '@/components/navbar/SignOutLink';
 import { auth } from '@clerk/nextjs/server';
 function LinksDropdown() {
   const { userId } = auth();

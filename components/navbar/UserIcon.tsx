@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
 import { LuUser2 } from 'react-icons/lu';
 import { currentUser } from '@clerk/nextjs/server';
 

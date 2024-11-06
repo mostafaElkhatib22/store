@@ -1,9 +1,9 @@
-import Container from '../global/Container';
-import CartButton from './CartButton';
-import DarkMode from './DarkMode';
-import LinksDropdown from './LinksDropdown';
-import Logo from './Logo';
-import NavSearch from './NavSearch';
+import Container from '@/components/global/Container';
+import CartButton from '@/components/navbar/CartButton';
+import DarkMode from '@/components/navbar/DarkMode';
+import LinksDropdown from '@/components/navbar/LinksDropdown';
+import Logo from '@/components/navbar/Logo';
+import NavSearch from '@/components/navbar/NavSearch';
 import { Suspense } from 'react';
 function Navbar() {
   return (
